@@ -13,15 +13,14 @@ public class DnsTests {
     MainPage mainPage = new MainPage();
 
     @Test
-    void checkAddProductToWishlist() {
+    void checkAddProductToCard() {
         mainPage.openMainPage();
-        mainPage.clickWishlist();
-        open("https://www.dns-shop.ru/profile/wishlist/");
-        $(".profile-wishlist__empty-text").shouldHave(text("В списке пока нет ни одного избранного товара"));
+        $(".cart-link").click();
+        $(".empty-message__title-empty-cart").shouldHave(text("Корзина пуста"));
         open("https://www.dns-shop.ru/catalog/17a8a05316404e77/planshety/");
         $$("div.catalog-product a").first().click();
-        $(".wishlist-btn").click();
-        $(".wishlist-link__badge").shouldHave(text("1"));
+        $(".buy-btn").click();
+        $(".cart-link__badge").shouldHave(text("1"));
     }
 
     @Test
